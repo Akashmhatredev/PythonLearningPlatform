@@ -1,0 +1,139 @@
+/* ------------------------------------------------------------------
+   Design tokens — "raw manual" theme, Python edition
+   Paper, ink, kraft tape and two Python-logo accents. Everything else
+   derives from these so the palette can be retuned in one place:
+   change the --py-* brand colours below and the whole app follows.
+   ------------------------------------------------------------------ */
+:root {
+  /* Python brand palette */
+  --py-blue: #3776ab; /* primary accent — white text on it passes WCAG AA */
+  --py-blue-deep: #2b5b84; /* blue for text/strokes on paper (AA on --paper) */
+  --py-blue-soft: #e8f0f8;
+  --py-yellow: #ffd43b; /* secondary accent — near-black text on it */
+  --py-yellow-soft: #fff4c7;
+
+  /* paper & ink (from the Anti-Polish reference palette, warmed) */
+  --paper: #f7f3e8;
+  --paper-2: #eee8d8;
+  --paper-3: #e3dbc6;
+  --note: #fffcf0;
+  --note-yellow: var(--py-yellow-soft);
+  --note-green: #effaee;
+  --note-blue: var(--py-blue-soft);
+  --kraft: #d4c4a8;
+  --kraft-dark: #c4a77d;
+  --rust: #8b4513;
+  --ink: #171717;
+  --graphite: #474747;
+  --muted: #5c5a53;
+
+  /* accent roles (components use these names) */
+  --accent: var(--py-blue); /* primary: brand marks, progress, key actions */
+  --accent-ink: #ffffff;
+  --accent-2: var(--py-yellow); /* secondary: highlighter, Run, "done" chips */
+  --accent-2-ink: var(--ink);
+  --acid: var(--accent-2); /* highlighter role — readable on paper and on dark code panels */
+  --acid-ink: var(--accent-2-ink); /* text that sits on acid */
+  --cobalt: var(--accent); /* backgrounds with white text — same in both themes */
+  --cobalt-ink: var(--accent-ink);
+  --cobalt-text: var(--py-blue-deep); /* blue used as text/strokes on the page background */
+  --red: #c62f17; /* white text on this passes WCAG AA */
+  --red-text: #b8220f; /* red that passes contrast as text on paper */
+  --green: #0f7a3d;
+
+  /* surfaces */
+  --bg: var(--paper);
+  --surface: #ffffff;
+  --surface-2: var(--paper-2);
+  --text: var(--ink);
+  --text-soft: var(--graphite);
+  --line: var(--ink);
+  --shadow-color: var(--ink);
+
+  /* code panels stay dark in both themes for strong separation */
+  --code-bg: #161614;
+  --code-bg-2: #22221f;
+  --code-text: #f1eee5;
+  --code-muted: #9d998e;
+  --code-line: #33322e;
+  --code-highlight: rgba(255, 212, 59, 0.14);
+
+  /* borders, shadows, radii */
+  --bw: 3px;
+  --bw-thin: 2px;
+  --border: var(--bw) solid var(--line);
+  --border-thin: var(--bw-thin) solid var(--line);
+  --shadow: 6px 6px 0 var(--shadow-color);
+  --shadow-sm: 3px 3px 0 var(--shadow-color);
+  --shadow-lg: 10px 10px 0 var(--shadow-color);
+  --sketch-radius: 255px 15px 225px 15px / 15px 225px 15px 255px;
+
+  /* type */
+  --font-display: 'Archivo Variable', 'Arial Black', 'Helvetica Neue', sans-serif;
+  --font-body: 'Archivo Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-hand: 'Patrick Hand', 'Comic Sans MS', 'Marker Felt', cursive;
+
+  --step--1: clamp(0.82rem, 0.8rem + 0.1vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.45vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.3rem + 0.9vw, 2.1rem);
+  --step-3: clamp(1.9rem, 1.5rem + 1.8vw, 3.1rem);
+  --step-4: clamp(2.4rem, 1.7rem + 3.4vw, 4.8rem);
+  --step-5: clamp(3rem, 1.8rem + 6vw, 7.6rem);
+
+  /* spacing (deliberately uneven multiples) */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.5rem;
+  --s-6: 2rem;
+  --s-7: 3rem;
+  --s-8: 4.5rem;
+  --s-9: 7rem;
+
+  --header-h: 64px;
+  --sidebar-w: 300px;
+  --content-max: 860px;
+  --page-max: 1440px;
+
+  /* motion: raw & stepped rather than smooth */
+  --snap: steps(3, end);
+  --quick: 120ms;
+  --med: 220ms;
+
+  color-scheme: light;
+}
+
+/* Dark "blackboard" theme. Applied when the user picks dark, or follows a dark OS. */
+:root[data-theme='dark'] {
+  --bg: #141412;
+  --surface: #1e1e1b;
+  --surface-2: #262622;
+  --paper-2: #262622;
+  --paper-3: #34332e;
+  --note: #24231c;
+  --note-yellow: var(--py-yellow-soft);
+  --note-green: #17271a;
+  --note-blue: var(--py-blue-soft);
+  --text: #f1eee5;
+  --text-soft: #c9c5b8;
+  --muted: #a8a397;
+  --line: #f1eee5;
+  --shadow-color: #000000;
+  --ink: #f1eee5;
+  --graphite: #c9c5b8;
+  --accent-2-ink: #171717;
+  --red-text: #ff7a63;
+  --green: #5fd38d;
+  --cobalt-text: #8fbce6;
+  --py-blue-soft: #18263a;
+  --py-yellow-soft: #2d2711;
+  --code-bg: #0c0c0b;
+  --code-bg-2: #1a1a18;
+  --shadow: 6px 6px 0 #000, 6px 6px 0 1px var(--line);
+  --shadow-sm: 3px 3px 0 #000, 3px 3px 0 1px var(--line);
+  --shadow-lg: 10px 10px 0 #000, 10px 10px 0 1px var(--line);
+  color-scheme: dark;
+}

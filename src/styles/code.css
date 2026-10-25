@@ -1,0 +1,281 @@
+/* ------------------------------------------------------------------
+   Code surfaces. Static blocks and the CodeMirror editor share the same
+   Lezer token classes (tok-*), so highlighting looks identical in both.
+   ------------------------------------------------------------------ */
+.code-panel {
+  background: var(--code-bg);
+  color: var(--code-text);
+  border: var(--border);
+  box-shadow: var(--shadow);
+  position: relative;
+  min-width: 0;
+}
+.code-panel__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--s-2);
+  padding: 0 0 0 var(--s-3);
+  min-height: 40px;
+  border-bottom: 2px solid var(--code-line);
+  background: var(--code-bg-2);
+}
+.code-panel__title {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--code-text);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.code-panel__title .dot {
+  width: 10px;
+  height: 10px;
+  background: var(--acid);
+  border: 2px solid #000;
+  flex: none;
+}
+.code-panel__actions {
+  display: flex;
+  align-items: stretch;
+  align-self: stretch;
+}
+.code-panel__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0 0.8em;
+  min-height: 40px;
+  border: 0;
+  border-left: 2px solid var(--code-line);
+  background: transparent;
+  color: var(--code-text);
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.code-panel__btn:hover {
+  background: var(--acid);
+  color: #1a1a1a;
+}
+.code-panel__btn:focus-visible {
+  outline: 3px solid var(--acid);
+  outline-offset: -3px;
+}
+
+.code-block {
+  margin: 0;
+  padding: var(--s-4) 0;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  line-height: 1.65;
+  tab-size: 2;
+  -webkit-overflow-scrolling: touch;
+}
+.code-block code {
+  display: block;
+  min-width: max-content;
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: inherit;
+  white-space: pre;
+}
+.code-line {
+  display: block;
+  padding: 0 var(--s-4) 0 0;
+  border-left: 4px solid transparent;
+}
+.code-line::before {
+  content: attr(data-n);
+  display: inline-block;
+  width: 3ch;
+  margin-right: 1.4ch;
+  margin-left: 0.6ch;
+  text-align: right;
+  color: var(--code-muted);
+  user-select: none;
+}
+.code-line.is-hl {
+  background: var(--code-highlight);
+  border-left-color: var(--acid);
+}
+/* De-emphasise without breaking contrast: desaturate instead of fading. */
+.code-line.is-dim {
+  filter: saturate(0.2);
+  opacity: 0.85;
+}
+.code-block--plain .code-line::before {
+  display: none;
+}
+.code-block--plain .code-line {
+  padding-left: var(--s-4);
+}
+
+/* token palette (Lezer classHighlighter names) */
+.tok-keyword,
+.tok-operatorKeyword,
+.tok-controlKeyword,
+.tok-moduleKeyword,
+.tok-definitionKeyword {
+  color: #ff8f6b;
+}
+.tok-string,
+.tok-string2,
+.tok-attributeValue,
+.tok-special {
+  color: #b5e88f; /* syntax colours are independent of the brand palette */
+}
+.tok-number,
+.tok-bool,
+.tok-atom,
+.tok-null {
+  color: #ffd166;
+}
+.tok-comment,
+.tok-meta,
+.tok-lineComment,
+.tok-blockComment {
+  color: #aaa69b;
+  font-style: italic;
+}
+.tok-variableName {
+  color: #f1eee5;
+}
+.tok-variableName.tok-definition,
+.tok-definition {
+  color: #9fd8ff;
+}
+.tok-function,
+.tok-variableName2 {
+  color: #9fd8ff;
+}
+.tok-propertyName {
+  color: #c9b8ff;
+}
+.tok-typeName,
+.tok-className,
+.tok-namespace {
+  color: #7ee2b8;
+}
+.tok-tagName {
+  color: #ff8f6b;
+}
+.tok-attributeName {
+  color: #c9b8ff;
+}
+.tok-operator,
+.tok-punctuation,
+.tok-angleBracket {
+  color: #cfcabd;
+}
+.tok-invalid {
+  color: #ff5c5c;
+  text-decoration: wavy underline;
+}
+.tok-heading {
+  color: #b5e88f;
+  font-weight: 700;
+}
+.tok-link,
+.tok-url {
+  color: #9fd8ff;
+  text-decoration: underline;
+}
+.tok-inserted {
+  color: #7ee2b8;
+}
+.tok-deleted {
+  color: #ff8f6b;
+}
+
+/* CodeMirror chrome to match */
+.cm-editor {
+  background: var(--code-bg);
+  color: var(--code-text);
+  font-size: 0.86rem;
+  height: 100%;
+}
+.cm-editor.cm-focused {
+  outline: none;
+}
+.cm-scroller {
+  font-family: var(--font-mono) !important;
+  line-height: 1.65 !important;
+}
+.cm-content {
+  caret-color: var(--acid);
+  padding: var(--s-3) 0 !important;
+}
+.cm-gutters {
+  background: var(--code-bg) !important;
+  color: var(--code-muted) !important;
+  border-right: 2px solid var(--code-line) !important;
+}
+.cm-activeLine {
+  background: rgba(255, 255, 255, 0.04) !important;
+}
+.cm-activeLineGutter {
+  background: rgba(255, 255, 255, 0.06) !important;
+  color: var(--code-text) !important;
+}
+.cm-cursor {
+  border-left: 2px solid var(--acid) !important;
+}
+.cm-selectionBackground,
+.cm-editor.cm-focused .cm-selectionBackground,
+.cm-content ::selection {
+  background: rgba(143, 188, 230, 0.3) !important;
+}
+.cm-matchingBracket {
+  background: rgba(255, 212, 59, 0.2) !important;
+  outline: 1px solid rgba(255, 212, 59, 0.5);
+}
+.cm-guided-line {
+  background: var(--code-highlight) !important;
+  box-shadow: inset 4px 0 0 var(--acid);
+}
+.cm-tooltip {
+  background: var(--code-bg-2) !important;
+  border: 2px solid var(--code-line) !important;
+  color: var(--code-text) !important;
+}
+.cm-tooltip-autocomplete ul li[aria-selected] {
+  background: var(--acid) !important;
+  color: var(--acid-ink) !important;
+}
+.cm-panels {
+  background: var(--code-bg-2) !important;
+  color: var(--code-text) !important;
+}
+
+/* code size preference (Settings → code size) */
+:root[data-code-size='sm'] .code-block,
+:root[data-code-size='sm'] .cm-editor {
+  font-size: 0.78rem;
+}
+:root[data-code-size='lg'] .code-block,
+:root[data-code-size='lg'] .cm-editor {
+  font-size: 0.98rem;
+}
+
+/* No programming ligatures: beginners must see exactly what to type (=> not ⇒). */
+code,
+kbd,
+pre,
+samp,
+.mono,
+.cm-editor,
+.cm-content,
+.code-block {
+  font-variant-ligatures: none;
+  font-feature-settings: 'liga' 0, 'calt' 0;
+}
