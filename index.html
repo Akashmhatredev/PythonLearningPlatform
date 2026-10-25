@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Python Learning Platform — learn Python from absolute zero to professional: plain-English lessons, real Python running in your browser, animated visualizers, quizzes and interview practice." />
+    <meta name="theme-color" content="#f7f3e8" />
+    <meta name="application-name" content="Python Learning Platform" />
+    <meta property="og:title" content="Python Learning Platform" />
+    <meta property="og:description" content="Learn Python from zero to professional with real code running in your browser." />
+    <title>Python Learning Platform — Python from zero to professional</title>
+    <script>
+      // Apply the saved theme before first paint to avoid a light/dark flash.
+      ;(function () {
+        try {
+          var raw = localStorage.getItem('plp:preferences')
+          var prefs = raw ? JSON.parse(raw).data || {} : {}
+          var theme = prefs.theme || 'system'
+          if (theme === 'system') theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          document.documentElement.dataset.theme = theme
+          if (prefs.motion && prefs.motion !== 'system') document.documentElement.dataset.motion = prefs.motion
+        } catch (e) {}
+      })()
+    </script>
+  </head>
+  <body>
+    <noscript>Python Learning Platform is an interactive course and needs JavaScript enabled.</noscript>
+    <div id="app"></div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
